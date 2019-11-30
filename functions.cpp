@@ -92,12 +92,12 @@ void interprete(Machine machine, string word){
 	bool foundSymb=false;
 	int caracterCount=0;
 	string currentSymbol;
-	vector<vector<string>> vect=machine.getSymbols();
+	vector<vector<string>> vect=machine.getSymbols(); 
+
 	bool final=false;
 	//while we haven't read each character and we are not in a final state
 	while(caracterCount<sizeWord && final==false){
 		currentSymbol=word.at(caracterCount);
-
 		//we look for a match between the current symbol and a symbol that the machine can read
 		for(int i=0; i<vect.size(); i++){
 			if(vect[i][0]==currentSymbol){
@@ -119,6 +119,7 @@ void interprete(Machine machine, string word){
 				if(transiStates[i][0]==machine.getCurrentState()){
 					if(transiSymbols[i][0]==currentSymbol){
 						displaySteps1(machine,transiSymbols,i);
+						
 						//we concatenate the output symbol to finalTape
 						machine.setFinalTape(transiSymbols[i][1]);
 						//we update the state
@@ -154,8 +155,6 @@ void interprete(Machine machine, string word){
 		}
 	}
 
-
-
 	//if we are not in a final state, we read blank
 	if(final==false){
 		currentSymbol=machine.getBlank();
@@ -179,6 +178,7 @@ void interprete(Machine machine, string word){
 				if(transiStates[i][0]==machine.getCurrentState()){
 					if(transiSymbols[i][0]==currentSymbol){
 						displaySteps1(machine,transiSymbols,i);
+
 						//we concatenate the output symbol to finalTape
 						machine.setFinalTape(transiSymbols[i][1]);
 						//we update the state

@@ -14,7 +14,6 @@ class Machine{
 		string m_finalTape;
 		string m_blank;
 		string m_currentState;
-
 		/*m_states[x][0] contains the name of the state and m_states[x][1] contains T or F*/
 		vector<vector<string>> m_states; 
 
@@ -33,6 +32,7 @@ class Machine{
 		bool m_displaySteps=false;
 		bool m_displayState=false;
 		bool m_displayTape=false;
+		int m_count;
 
 	public:
 		Machine();

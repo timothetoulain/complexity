@@ -1,8 +1,9 @@
 #include "Machine.h"
 #include<iostream>
+#include<cstring>
 using namespace std;
 
-Machine::Machine(){}
+Machine::Machine(){m_count=0;}
 
 string Machine::getInitial(){
 	return m_initial;
@@ -20,6 +21,16 @@ string Machine::getCurrentState(){
 	return m_currentState;
 }
 string Machine::getFinalTape(){
+	//we delete the blank character from the final tape
+	string b=m_blank; 
+    char blank_array[1];  
+    strcpy(blank_array, b.c_str()); 
+  
+	for(int i=0;i<m_finalTape.length();i++){
+		if(m_finalTape.at(i)==blank_array[0]){
+  			m_finalTape.erase (m_finalTape.begin()+i);
+		}
+	}
 	return m_finalTape;
 }
 string Machine::getDirection(int i){
@@ -55,9 +66,10 @@ void Machine::setBlank(string blank){
 void Machine::setStates(string state, string term){
 	vector<string>vect;
 	vect.push_back(state);
-	int size=m_symbols.size();
+	int size=m_count;
 	m_states.push_back(vect);
 	m_states[size].push_back(term);
+	m_count++;
 }
 void Machine::setSymbols(string symb,string term){
 	vector<string>vect;
